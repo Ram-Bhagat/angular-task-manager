@@ -1,0 +1,15 @@
+.badge-edit{
+    cursor: pointer;
+}
+
+.table-input-color{
+    background-color: #212529;
+    border: none;
+    color: #fff;
+}
+
+
+table input{
+    padding: 5px 0px 5px 10px  !important;
+    width: auto !important;
+}

@@ -1,0 +1,45 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">Task Manager</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul *ngIf="!userService.currentUserName" class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" >seller</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login/SignUp</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Cart(0)</a>
+                </li>
+            </ul>
+            <ul *ngIf="userService.currentUserName" class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/admin/home" [routerLinkActive]="'active'">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/admin/profile" [routerLinkActive]="'active'">{{userService.currentUserName | titlecase}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/admin/dashboard" [routerLinkActive]="'active'">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/admin/projects" [routerLinkActive]="'active'">Project</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="logOut()">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

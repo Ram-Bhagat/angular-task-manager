@@ -1,0 +1,141 @@
+<div class="row">
+  <div class="col-md-9 mx-auto">
+    <!-- HEADER WITH LOGO AND FILTER DROPDOWNS -->
+    <div class="d-flex justify-content-between align-items-center my-3">
+      <div class="admin-header-title">
+        <h2>Projects</h2>
+      </div>
+      <div class="admin-header-filter">
+        <!-- Static Gender Dropdown -->
+        <select name="category" class="form-select" [(ngModel)]="searchBy" (ngModelChange)="searchProject()">
+          <option value="All">All Category</option>
+          <option value="TeamSize">Team Size</option>
+          <option value="ProjectName">Project Name</option>
+        </select>
+      </div>
+      <div class="admin-header-filter">
+        <!-- Search Input -->
+        <input type="text" class="form-control" placeholder="Search by Category..." [(ngModel)]="searchText" (keydown)="searchProject()">
+      </div>
+    </div>
+    <!-- HEADER ENDS -->
+  
+    <div class="admin-content">
+      <table class="table table-bordered table-dark">
+        <!-- TABLE HEADER -->
+        <thead>
+          <tr>
+            <th>Project ID</th>
+            <th>Project Name</th>
+            <th>Date of Start</th>
+            <th>Team Size</th>
+            <th>Actions <span class="badge rounded-pill text-bg-success badge-edit ms-2" (click)="addNewProject()">Add</span></th>
+          </tr>
+        </thead>
+        <!-- TABLE HEADER ENDS -->
+      
+        <!-- Empty row below the head -->
+      
+        <tbody *ngIf="isAdding">
+          <tr [formGroup]="projectForm">
+            <td>
+              <input type="number" class="form-control" formControlName="projectID" placeholder="Project ID">
+            </td>
+            <td>
+              <input type="text" class="form-control" formControlName="projectName" placeholder="Project Name">
+            </td>
+            <td>
+              <input type="date" class="form-control" formControlName="dateOfStart" placeholder="Date of Start">
+            </td>
+            <td>
+              <input type="number" class="form-control" formControlName="teamSize" placeholder="Team Size" min="1">
+            </td>
+            <td>
+              <span class="badge rounded-pill text-bg-success badge-edit" (click)="saveNewProject()">Save</span>
+              <span class="badge rounded-pill text-bg-warning badge-edit ms-3" (click)="cancelNewProject()">Cancel</span>
+            </td>
+          </tr>
+        </tbody>
+        
+      
+        <tbody *ngFor="let project of projects let i = index">
+          <tr>
+            <td>
+              <input type="text" class="form-control table-input-color" [(ngModel)]="project.projectID" disabled id="projectIdInput" name="projectId" placeholder="Project ID">
+            </td>
+            <td>
+              <input type="text" class="form-control" [(ngModel)]="project.projectName" [disabled]="isEditing || projectId !== project.projectID" [class.table-input-color]="isEditing || projectId !== project.projectID" id="projectNameInput" name="projectName" placeholder="Project Name">
+            </td>
+            <td>
+              <input type="date" class="form-control" [(ngModel)]="project.dateOfStart" [disabled]="isEditing || projectId !== project.projectID" [class.table-input-color]="isEditing || projectId !== project.projectID" id="dateOfStartInput" name="dateOfStart" placeholder="Date of Start">
+            </td>
+            <td>
+              <input type="number" class="form-control" [(ngModel)]="project.teamSize" [disabled]="isEditing || projectId !== project.projectID" [class.table-input-color]="isEditing || projectId !== project.projectID" id="teamSizeInput" name="teamSize" placeholder="Team Size" min="1">
+            </td>            
+            
+            <td>
+              <span *ngIf="isEditing || projectId !== project.projectID"
+                    class="badge rounded-pill text-bg-danger badge-edit" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#projectDeletesModal" 
+                    (click)="onClickDelete($event, i)">
+                Delete
+              </span>
+              
+              <span *ngIf="isEditing || projectId !== project.projectID"
+                    class="badge rounded-pill text-bg-secondary badge-edit ms-3" 
+                    (click)="editProject(project.projectID)">
+                Edit
+              </span>
+              
+              <span *ngIf="!isEditing && projectId === project.projectID"
+                    class="badge rounded-pill text-bg-success badge-edit ms-3"
+                  (click)="saveEditProject(project)">
+                Save
+              </span>
+              
+              <span *ngIf="!isEditing && projectId === project.projectID"
+                    class="badge rounded-pill text-bg-warning badge-edit ms-3"
+                    (click)=" cancleEditing()">
+                Cancel
+              </span>
+            </td>
+            
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>
+  
+  </div>
+  </div>
+  
+
+<!-- Modal to delete-->
+<div class="modal fade" id="projectDeletesModal" tabindex="-1" aria-labelledby="projectDeleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger" id="projectDeleteModalLabel">Are you Sure to delete </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Project ID Input -->
+        <div class="mb-3">
+          <label for="projectIdInput" class="form-label" style="color: #333;">Project ID</label>
+          <input type="text" class="form-control" id="projectIdInput" [(ngModel)]="deleteProject.projectID" disabled>
+        </div>
+
+        <!-- Project Name Input -->
+        <div class="mb-3">
+          <label for="projectNameInput" class="form-label" style="color: #333;">Project Name</label>
+          <input type="text" class="form-control" id="projectNameInput" [(ngModel)]="deleteProject.projectName" disabled>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button #closeDeleteModel type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" (click)="  confirmDelete()">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
