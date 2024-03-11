@@ -1,3 +1,11 @@
+# About Project
+This project demonstrates CRUD (Create, Read, Update, Delete) operations in a web application. It showcases the implementation of Angular directives and data binding techniques for efficient management and presentation of data.
+
+Key Features:
+Perform CRUD operations seamlessly.
+Utilize Angular directives for dynamic UI components.
+Leverage data binding to synchronize data between the view and model.
+
 # ProjectOne
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.10.
