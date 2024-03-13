@@ -1,13 +1,15 @@
 
 # About Project
-This project showcases various features including CRUD (Create, Read, Update, Delete) operations, services, JWT authentication, routing, login functionality, and utilizes a server file named "node4TaskManager".
+This project showcases various features including CRUD (Create, Read, Update, Delete) operations, services, JWT authentication, routing, login functionality, directives, and data binding. It utilizes a server file named "node4TaskManager" for backend operations.
 
 Key Features:
+
 Implement CRUD operations efficiently.
 Utilize Angular services for managing data and functionality.
 Incorporate JWT authentication for secure user authentication.
 Implement routing for navigating between different views.
 Include login functionality to authenticate users.
+Utilize directives and data binding for dynamic UI components and synchronized data management.
 
 # ProjectOne
 
