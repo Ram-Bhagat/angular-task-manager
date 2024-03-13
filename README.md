@@ -1,10 +1,13 @@
+
 # About Project
-This project demonstrates CRUD (Create, Read, Update, Delete) operations in a web application. It showcases the implementation of Angular directives and data binding techniques for efficient management and presentation of data.
+This project showcases various features including CRUD (Create, Read, Update, Delete) operations, services, JWT authentication, routing, login functionality, and utilizes a server file named "node4TaskManager".
 
 Key Features:
-Perform CRUD operations seamlessly.
-Utilize Angular directives for dynamic UI components.
-Leverage data binding to synchronize data between the view and model.
+Implement CRUD operations efficiently.
+Utilize Angular services for managing data and functionality.
+Incorporate JWT authentication for secure user authentication.
+Implement routing for navigating between different views.
+Include login functionality to authenticate users.
 
 # ProjectOne
 
